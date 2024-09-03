@@ -1,0 +1,11 @@
+/* Style for the trip card component */
+.trip-card {
+    display: flex; /* Use flexbox layout for positioning */
+    flex-direction: column; /* Arrange child elements in a vertical column */
+    align-items: center; /* Center align items horizontally */
+    justify-content: space-between; /* Distribute space evenly between items */
+    padding: 20px; /* Add padding inside the card */
+    border: 1px solid #ccc; /* Add a light gray border around the card */
+    border-radius: 5px; /* Round the corners of the border */
+    margin-bottom: 20px; /* Add space below the card */
+}

@@ -1,0 +1,253 @@
+/* Global styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Header style for the profile page */
+header {
+  background-color: rgba(165, 192, 223); /* Light blue */
+  color: white;
+  text-align: center;
+  border-bottom: 1px solid rgba(133, 107, 70, 0.774); /* Brown border */
+  font-family: "Kalam";
+  font-size: 2rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style for the Nomad Notes link */
+header .brand-link {
+  margin-left: 1rem;
+  color: white;
+  text-decoration: none;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0);
+  font-family: "Kalam";
+  font-size: 2rem;
+}
+
+/* Style for the logout button */
+.logout-button {
+  background-color: rgba(165, 192, 223, 0.9); /* Light blue */
+  color: white;
+  border: none;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0);
+  border-radius: 5px;
+  font-family: "Kalam";
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+/* Hover and active states for the logout button */
+.logout-button:hover {
+  background-color: rgba(133, 107, 70, 0.849);
+  transform: scale(1.01);
+}
+
+.logout-button:active {
+  transform: scale(0.95);
+}
+
+/* Main content container */
+#profile {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Style for the background image on the profile page */
+.profileBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  z-index: -1;
+}
+
+/* Main content area */
+#main-content {
+  padding: 1rem 2rem;
+  margin-top: 0; /* Reduce gap between header and content */
+  text-align: center;
+  z-index: 1;
+}
+
+/* Style for the welcome message */
+#main-content h1 {
+  color: #ffffff; /* White color */
+  font-size: 4rem; /* Slightly larger font size */
+  font-family: "Kalam";
+  margin-bottom: 1rem;
+  text-align: left;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0); /* Stronger shadow for more impact */
+}
+
+/* Flex container for the trip boxes */
+.trip-boxes-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: nowrap;
+}
+
+/* Style for the headings within each trip entry */
+#trips-box h3 {
+  font-family: "Kalam";
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: rgba(106, 85, 55);
+}
+
+/* Main box title links */
+#upcoming-trips-box > a,
+#previous-trips-box > a,
+#dream-trips-box > a {
+  font-family: "Kalam";
+  text-shadow: 4px 4px 4px rgba(0, 0, 0);
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Style for all trip boxes (upcoming, previous, dream) */
+#upcoming-trips-box,
+#previous-trips-box,
+#dream-trips-box {
+  width: calc(33.333% - 20px);
+  min-width: 250px;
+  /* height: 300px; */
+  border: solid rgba(165, 192, 223, 0.9); /* Blue border */
+  border-radius: 10px;
+  font-family: "Kalam";
+  background-color: rgba(133, 107, 70, 0.5); /* Brown background */
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure trip entries take up the full width of the container */
+#trips-box > div {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgba(165, 192, 223, 0.8); /* Lighter blue background */
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Style for paragraphs and long text within trip entries */
+#trips-box p {
+  font-family: "Kalam";
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(106, 85, 55);
+}
+
+/* Remove text shadow from trip entries */
+#trips-box p {
+  text-shadow: none; /* Remove any text shadow */
+}
+
+/* Button styling within trip entries */
+#trips-box button {
+  display: block;
+  background-color: rgba(165, 192, 223, 0.9); /* Blue for buttons */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-family: "Kalam";
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 5px 0;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover and active states for trip buttons */
+#trips-box button:hover {
+  background-color: rgba(133, 107, 70, 0.9); /* Brown on hover */
+  transform: scale(1.01);
+}
+
+#trips-box button:active {
+  transform: scale(0.95);
+}
+
+/* Prevent horizontal scrolling */
+#trips-box {
+  overflow-x: hidden;
+}
+
+/* Styling the scrollbar in the trip boxes */
+#trips-box::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+#trips-box::-webkit-scrollbar-track {
+  background: rgba(165, 192, 223, 0.3); /* Light blue track background */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+#trips-box::-webkit-scrollbar-thumb {
+  background-color: rgba(133, 107, 70, 0.8); /* Brown thumb color */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  border: 2px solid rgba(165, 192, 223, 0.5); /* Optional: border around the thumb */
+}
+
+#trips-box::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(133, 107, 70, 1); /* Darker brown on hover */
+}
+
+/* For Firefox */
+#trips-box {
+  scrollbar-width: thin; /* Make the scrollbar thinner */
+  scrollbar-color: rgba(133, 107, 70, 0.8) rgba(165, 192, 223, 0.3); /* Thumb and track colors */
+}
+
+/* For Edge, IE */
+#trips-box {
+  -ms-overflow-style: none; /* Hide default scrollbar */
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .trip-boxes-container {
+    flex-wrap: wrap;
+  }
+
+  #upcoming-trips-box,
+  #previous-trips-box,
+  #dream-trips-box {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: unset;
+  }
+}

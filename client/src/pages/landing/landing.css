@@ -1,0 +1,97 @@
+/* Ensure the entire page takes up the full viewport height */
+body,
+html {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  height: 100%; /* Ensure full height of viewport */
+}
+
+/* Style for the main container to make it full screen */
+main #landing {
+  position: relative; /* Allows for absolute positioning of background image */
+  height: 100vh; /*Full viewport height */
+  display: flex; /* Flexbox for centering content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  color: white; /* White text color */
+}
+
+/* Style the background image */
+.bg {
+  position: absolute; /* Position background image behind other content */
+  top: 0; /* Align to the top of the container */
+  left: 0; /* Align to the left of the container */
+  width: 100%; /* Full width of the container */
+  height: 100%; /* Full height of the container */
+  background-image: url("../../assets/landingbg.png"); /* Set the background image */
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Keeps the image centered */
+  background-repeat: no-repeat; /* Prevents repeating the image */
+  opacity: 0.6; /* Adjust the transparency of the image */
+  z-index: -1; /* Places the image behind the content */
+}
+
+/* Style for the text and buttons within the main container */
+main > div {
+  z-index: 1; /* Ensures the text and buttons appear above the background image */
+}
+
+/* Heading style */
+h1 {
+  font-family: "Kalam"; /* Custom cursive font */
+  font-style: italic; /* Italicize the text */
+  font-size: 10rem; /* Large font size for prominence */
+  margin-bottom: 1rem; /* Space below the heading */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow effect to enhance readability */
+}
+
+/* Paragraph style */
+p {
+  font-family: "Lora", serif; /* Serif font for a classic look */
+  font-weight: bold; /* Bold text for emphasis */
+  font-size: 2.5rem; /* Large font size for readability */
+  margin-bottom: 8rem; /* Space below the paragraph */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Adds a shadow effect for better contrast */
+}
+
+/* Button styles */
+.btn {
+  background-color: rgba(
+    66,
+    207,
+    231,
+    0.8
+  ); /* Semi-transparent orange background */
+  border: none; /* Remove default border */
+  color: white; /* White text color */
+  padding: 1rem 3rem; /* Padding inside the button */
+  font-family: "Kalam"; /* Custom cursive font */
+  font-size: 2rem; /* Font size for readability */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+  text-decoration: none; /* Remove underline from links */
+  display: inline-block; /* Ensure buttons align properly */
+  margin: 0 5rem; /* Horizontal margin between buttons */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a raised effect */
+}
+
+.btn:hover {
+  background-color: rgba(
+    218,
+    127,
+    63,
+    1
+  ); /* Fully opaque background on hover */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+}
+
+/* Footer styles */
+footer {
+  font-family: "Lora", serif; /* Serif font for consistency with paragraphs */
+  color: white; /* White text color */
+  text-align: center; /* Center text alignment */
+  padding: 1rem; /* Padding inside the footer */
+  position: fixed; /* Fixed position at the bottom of the viewport */
+  bottom: 0; /* Align to the bottom of the viewport */
+  width: 100%; /* Full width of the viewport */
+}

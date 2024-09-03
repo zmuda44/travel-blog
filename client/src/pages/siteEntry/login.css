@@ -1,0 +1,98 @@
+/* Background image styling */
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+/* Main container styling for the login page */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Centering content on the page */
+.login-content {
+  text-align: center;
+  z-index: 1;
+}
+
+/* Styling for the main header */
+.login-header {
+  margin: 20px 0;
+  padding-top: 30px;
+  font-family: "Kalam";
+  font-size: 5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Styling for the subheader */
+.login-subheader {
+  margin: 20px 0;
+  font-family: "Lora", serif;
+  font-size: 1.5rem;
+  color: #ffd166;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Styling for the login box */
+.login-box {
+  margin: 20px auto;
+  background-color: rgba(233, 146, 33, 0.945);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+}
+
+/* Styling for the login title */
+.login-title {
+  margin: 20px 0;
+  font-family: "Kalam";
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+/* Styling for the input fields */
+.login-input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px auto;
+  font-size: 1rem;
+  border: 1px solid #ffd166;
+  border-radius: 5px;
+  font-family: "Lora", serif;
+  background-color: rgba(255, 255, 255, 0.85);
+  display: block;
+}
+
+/* Styling for the login button */
+.login-button {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  background-color: rgba(214, 93, 17, 1);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: "Kalam";
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the login button */
+.login-button:hover {
+  background-color: rgba(199, 83, 13, 1);
+}
