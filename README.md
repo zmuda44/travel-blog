@@ -2,9 +2,11 @@
 
 ## Project Description
 
-Welcome to **[Nomad Notes](https://nomadnotes-3v1b.onrender.com/)**, your ultimate online travel journal! Whether you're planning your next adventure, dreaming up future destinations, or reflecting on past journeys, our platform has you covered. Create and organize your upcoming trips, curate your dream vacation lists, and journal your travel experiences with ease. Share your stories, photos, and memories with a community of fellow explorers, and let your adventures inspire others! Start your journey with Nomad Notes today and keep the spirit of travel alive, no matter where you roam!
+The Travel blog was originally a collaborative project. Please see link for details. https://github.com/donnacancode/nomadnotes
 
 ![Screenshot](./client/src/assets/screenshot.png)
+
+See below for original features of collaborative project:
 
 ✨ Key Features:
 User Authentication: Secure user authentication ensures that your travel notes are kept private. Sign up and log in easily to start documenting your travels.
@@ -30,12 +32,6 @@ Background Images: Personalize your profile and trip entries with background ima
 Trip Sharing: Share your favorite trips and experiences with friends and family.
 Map Integration: View your trips on an interactive map, showcasing all the destinations you've visited.
 Photo Albums: Add photos to your trips, creating a visual journey of your adventures.
-
-## Installation
-
-This website does not require installation! Sit back, relax, and create your new nomad notes!
-
-## Usage
 
 **Creating a New Account:** Click on "Sign Up" and fill out the registration form.
 
@@ -74,25 +70,8 @@ Happy Travels!
 
 ### **Deployment & Version Control:**
 
-**Netlify:** The platform used to deploy and host the frontend of the application, ensuring fast and secure delivery.<br>
+**Render:** The platform used to deploy and host the application.<br>
 **Git:** Version control system used for tracking changes in the codebase.<br>
 **GitHub:** Hosting the project’s repository, facilitating collaboration and version management.<br>
 
-### **Development Tools:**
 
-**Visual Studio Code:** A source-code editor used for writing and managing the project code.<br>
-**ESLint:** A tool used for identifying and fixing linting issues in JavaScript code, ensuring code quality.<br>
-**Prettier:** A code formatter to maintain consistent code style across the project.<br>
-**Webpack:** A module bundler used to bundle and serve assets in the development process.<br>
-
-## Credits
-
-Greg Bailey: [Github](https://github.com/zmuda44)<br>
-Donna Burns: [Github](https://github.com/donnacancode)<br>
-Destiny Jenkins: [Github](https://github.com/destinyjen)<br>
-Zach Magras: [Github](https://github.com/zachfrosty4986)<br>
-Vincent Velthuizen: [Github](https://github.com/VPVelthuizen)
-
-## License
-
-![License: Unlicense](https://img.shields.io/badge/License-UN-purple.svg)
