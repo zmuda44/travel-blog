@@ -2,7 +2,7 @@
 
 ## Project Description
 
-The Travel blog was originally a collaborative project. Please see link for details. https://github.com/donnacancode/nomadnotes
+The Travel blog was originally a collaborative project. See link for details, and please take note of my contributions to both backend and frontend. https://github.com/donnacancode/nomadnotes
 
 ![Screenshot](./client/src/assets/screenshot.png)
 
