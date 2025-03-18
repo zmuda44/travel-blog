@@ -10,7 +10,7 @@ import PreviousTrips from "./pages/trips/previousTrips.jsx"; // Import the Previ
 import Profile from "./pages/profile/profile.jsx"; // Import the Profile page component
 import SignUp from "./pages/siteEntry/signUp.jsx"; // Import the SignUp page component
 import UpcomingTrips from "./pages/trips/upcomingTrips.jsx"; // Import the UpcomingTrips page component
-import "./index.css"; // Import the global CSS for the application
+import './App.css'
 
 // Create a router with routes and their corresponding components
 const router = createBrowserRouter([

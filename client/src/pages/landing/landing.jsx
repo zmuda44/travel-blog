@@ -14,9 +14,9 @@ const Landing = () => {
         <img src={landingbg} alt="Palm trees" className="bg" />
         <div style={{ textAlign: "center" }}>
           {/* Main heading of the landing page */}
-          <h1>Nomad Notes</h1>
+          <h1>Travel Blog</h1>
           {/* Subheading with a tagline */}
-          <p>Wander the World, Share your Stories</p>
+          <p>Travel anywhere, blog your experience</p>
           {/* Navigation links for Log In and Sign Up */}
           <Link to="/login" className="btn btn-primary btn-lg">
             Log In

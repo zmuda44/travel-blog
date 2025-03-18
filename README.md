@@ -6,6 +6,10 @@ The Travel blog was originally a collaborative project. See link for details, an
 
 ![Screenshot](./client/src/assets/screenshot.png)
 
+Added features and improved functionality:
+Dynamic copyright date
+changed backend to mongoose from GraphQL
+
 See below for original features of collaborative project:
 
 ✨ Key Features:
