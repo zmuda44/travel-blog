@@ -1,36 +1,39 @@
 const express = require("express");
-const { ApolloServer } = require("@apollo/server");
-const { expressMiddleware } = require("@apollo/server/express4");
+const app = express();  // Initialize an Express application
+// const { ApolloServer } = require("@apollo/server");
+// const { expressMiddleware } = require("@apollo/server/express4");
 const { authMiddleware } = require("./utils/auth");
 const path = require("node:path");
+const routes = require('./routes');
+const MongoStore = require('connect-mongo');
 
 // Import the GraphQL schema type definitions and resolvers
-const { typeDefs, resolvers } = require("./schemas");
+// const { typeDefs, resolvers } = require("./schemas");
 // Import the database connection configuration
 const db = require("./config/connection");
 
 const PORT = process.env.PORT || 3001;  // Define the port for the server
-const app = express();  // Initialize an Express application
-const server = new ApolloServer({
-  typeDefs,  // GraphQL schema type definitions
-  resolvers, // GraphQL schema resolvers
-});
+
+// const server = new ApolloServer({
+//   typeDefs,  // GraphQL schema type definitions
+//   resolvers, // GraphQL schema resolvers
+// });
 
 // Function to start the Apollo Server and Express application
-const startApolloServer = async () => {
-  await server.start();  // Start the Apollo Server
+// const startApolloServer = async () => {
+//  await server.start();  // Start the Apollo Server
 
   // Middleware to parse URL-encoded and JSON request bodies
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
   // Middleware to handle GraphQL requests
-  app.use(
-    "/graphql",
-    expressMiddleware(server, {
-      context: authMiddleware,  // Apply authentication middleware to the GraphQL context
-    })
-  );
+  // app.use(
+  //   "/graphql",
+  //   expressMiddleware(server, {
+  //     context: authMiddleware,  // Apply authentication middleware to the GraphQL context
+  //   })
+  // );
 
   // Serve static files and handle client-side routing in production
   if (process.env.NODE_ENV === "production") {
@@ -52,5 +55,5 @@ const startApolloServer = async () => {
 };
 
 // Call the async function to start the server
-startApolloServer();
+// startApolloServer();
 

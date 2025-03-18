@@ -1,4 +1,4 @@
-const { GraphQLError } = require("graphql");
+// const { GraphQLError } = require("graphql");
 const jwt = require("jsonwebtoken");
 
 // Secret key for JWT signing and verification
