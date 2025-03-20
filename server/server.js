@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();  // Initialize an Express application
 // const { ApolloServer } = require("@apollo/server");
 // const { expressMiddleware } = require("@apollo/server/express4");
-const { authMiddleware } = require("./utils/auth");
+// const { authMiddleware } = require("./utils/auth");
 const path = require("node:path");
 const routes = require('./routes');
 const MongoStore = require('connect-mongo');
@@ -35,6 +35,9 @@ const PORT = process.env.PORT || 3001;  // Define the port for the server
   //   })
   // );
 
+  // Route to folder routes for all requests
+  app.use(routes);
+
   // Serve static files and handle client-side routing in production
   if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../client/dist"))); // Serve static files from the client build directory
@@ -48,11 +51,10 @@ const PORT = process.env.PORT || 3001;  // Define the port for the server
   // Start the database connection and listen on the defined port
   db.once("open", () => {
     app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`); // Log server start
-      console.log(`Use GraphQL at http://localhost:${PORT}/graphql`); // Log GraphQL endpoint
+      console.log(`API server running on port http://localhost:${PORT}`); // Log server start
     });
   });
-};
+
 
 // Call the async function to start the server
 // startApolloServer();
