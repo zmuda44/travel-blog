@@ -17,7 +17,7 @@ export default defineConfig({
 
     // Proxy configuration to handle API requests
     proxy: {
-      '/graphql': {
+      '/api': {
         // Target server for the proxy
         target: 'http://localhost:3001',
 

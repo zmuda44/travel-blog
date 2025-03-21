@@ -5,14 +5,51 @@ const { User } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const response = await User.find({});
-
-    console.log(response)
-
     res.send(response)
   }
   catch (err) {
-    res.send(err)
+    console.log(err)
   }
+
 }) 
+
+router.post('/signup', async (req, res) => {
+  const {username, email, password} = req.body
+
+  try {
+
+    const submittedUser = await User.findOne({
+      username: username
+    })
+
+    console.log(submittedUser)
+
+
+
+    // const user = await User.create({
+    //   username: username,
+    //   email: email,
+    //   password: password
+    // })
+
+
+
+    // if (!user.length) {
+    //   res.status(404).json({message: "User not created"})
+    // }
+
+    // res.status(404).json({user})
+
+
+  }
+  catch (err) {
+    console.log(err)
+  }
+})
+
+router.post('/login', (req, res) => {
+
+  res.send(req.body)
+})
 
 module.exports = router
