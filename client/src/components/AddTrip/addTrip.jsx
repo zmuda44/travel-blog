@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_TRIP } from "../../utils/mutations";
-import { ADD_DREAM_TRIP } from "../../utils/mutations";
+// import { ADD_TRIP } from "../../utils/mutations";
+// import { ADD_DREAM_TRIP } from "../../utils/mutations";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../../utils/auth";
@@ -18,14 +18,14 @@ const AddTrip = () => {
 
   const [dreamTrip, setDreamTrip] = useState(false);
 
-  const {
-    data: { username },
-  } = Auth.getProfile();
+  // const {
+  //   data: { username },
+  // } = Auth.getProfile();
 
-  const [addTrip, { loading: addTripLoading, data: dataAddTrip }] =
-    useMutation(ADD_TRIP);
-  const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] =
-    useMutation(ADD_DREAM_TRIP);
+  // const [addTrip, { loading: addTripLoading, data: dataAddTrip }] =
+  //   useMutation(ADD_TRIP);
+  // const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] =
+  //   useMutation(ADD_DREAM_TRIP);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

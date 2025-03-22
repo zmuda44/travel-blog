@@ -22,7 +22,21 @@ router.post('/signup', async (req, res) => {
       username: username
     })
 
-    console.log(submittedUser)
+    if(submittedUser) {
+      return res.send("Username already in system, please try again")
+    }
+
+    const user = await User.create({
+      username: username,
+      email: email,
+      password: password
+    })
+
+    if(!user) {
+      return res.send("User not created")
+    }
+
+    res.send(user)
 
 
 
