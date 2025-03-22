@@ -52,19 +52,19 @@ const AddTrip = () => {
       console.log(dreamTrip);
       if (dreamTrip == true) {
         console.log(dreamTrip);
-        await addDreamTrip({
-          variables: { location, journalEntry, username },
-        });
+        // await addDreamTrip({
+        //   variables: { location, journalEntry, username },
+        // });
       } else {
-        await addTrip({
-          variables: {
-            location,
-            journalEntry,
-            startTripDate,
-            endTripDate,
-            username,
-          },
-        });
+        // await addTrip({
+        //   variables: {
+        //     location,
+        //     journalEntry,
+        //     startTripDate,
+        //     endTripDate,
+        //     username,
+        //   },
+        // });
       }
 
       setFormState({
@@ -73,7 +73,7 @@ const AddTrip = () => {
         startTripDate: new Date(),
         endTripDate: new Date(),
       });
-      setDreamTrip(false); // Reset dream trip checkbox
+      // setDreamTrip(false); // Reset dream trip checkbox
 
       window.location.reload();
     } catch (e) {
@@ -82,14 +82,14 @@ const AddTrip = () => {
   };
 
   const handleDreamTripChange = () => {
-    setDreamTrip(!dreamTrip);
-    if (!dreamTrip) {
-      setFormState({
-        ...userFormState,
-        startTripDate: null,
-        endTripDate: null,
-      });
-    }
+    // setDreamTrip(!dreamTrip);
+    // if (!dreamTrip) {
+    //   setFormState({
+    //     ...userFormState,
+    //     startTripDate: null,
+    //     endTripDate: null,
+    //   });
+    // }
   };
 
   return (

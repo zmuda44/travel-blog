@@ -1,16 +1,16 @@
 
 import Auth from '../../utils/auth';
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { REMOVE_TRIP, UPDATE_TRIP } from '../../utils/mutations';
+// import { useMutation } from '@apollo/client';
+// import { REMOVE_TRIP, UPDATE_TRIP } from '../../utils/mutations';
 import UpdateTrip from '../UpdateTrip/updateTrip';
 
 function UpcomingTrips({ trips }) {
   // GraphQL mutations for removing and updating trips
-  const [removeTrip] = useMutation(REMOVE_TRIP);
+  // const [removeTrip] = useMutation(REMOVE_TRIP);
 
   // Get username from Auth profile
-  const { data: { username } } = Auth.getProfile();
+  // const { data: { username } } = Auth.getProfile();
   // Local state for handling form data and form visibility
   const [formState, setFormState] = useState({});
   const [showFormState, setShowFormState] = useState({});
