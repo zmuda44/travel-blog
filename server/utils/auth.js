@@ -8,11 +8,11 @@ const expiration = "2h";
 
 module.exports = {
   // Custom error for unauthenticated access
-  AuthenticationError: new GraphQLError("Could not authenticate user.", {
-    extensions: {
-      code: "UNAUTHENTICATED",  // Error code indicating authentication failure
-    },
-  }),
+  AuthenticationError: (message = "Could not authenticate user.") => {
+    const error = new Error(message);
+    error.status = 401;  // Unauthorized status code
+    return error;
+  },
 
   // Middleware function to authenticate requests
   authMiddleware: function ({ req }) {
@@ -24,6 +24,7 @@ module.exports = {
       token = token.split(" ").pop().trim();
     }
 
+    
     // If no token is provided, continue without authentication
     if (!token) {
       return req;
@@ -52,9 +53,7 @@ module.exports = {
 };
 
 
-// set token secret and expiration date
-// const secret = 'mysecretsshhhhh';
-// const expiration = '2h';
+
 
 // module.exports = {
 //   // function for our authenticated routes
@@ -84,9 +83,4 @@ module.exports = {
 //     next();
 //   },
 
-// signToken: function ({ username, email, _id }) {
-//     const payload = { username, email, _id };
 
-//     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-//   },
-// };

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const { signToken, AuthenticationError } = require("../../utils/auth");
 
 
 router.get('/', async (req, res) => {
@@ -12,6 +13,27 @@ router.get('/', async (req, res) => {
   }
 
 }) 
+
+router.get('/me/', authMiddleware, async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).send({ error: 'Authentication required' });
+    }
+
+    // Find the user by the ID that is decoded from the JWT token
+    const user = await User.findById(req.user._id).populate('trips');
+
+    if (!user) {
+      return res.status(404).send({ error: 'User not found' });
+    }
+
+    // Return the user data
+    res.send(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ error: 'Internal server error' });
+  }
+});
 
 router.post('/signup', async (req, res) => {
   const {username, email, password} = req.body
@@ -32,11 +54,17 @@ router.post('/signup', async (req, res) => {
       password: password
     })
 
+   
+
+    const token = signToken(user);
+
     if(!user) {
       return res.send("User not created")
     }
 
-    res.send(user)
+    console.log(token)
+
+    res.send({ user, token })
 
 
 

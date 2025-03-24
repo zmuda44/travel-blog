@@ -8,11 +8,7 @@ import DreamTrips from "../../components/Trips/dreamTrips";
 import "./profile.css";
 import natl_park from "../../assets/natl_park.png";
 import { Navigate, useParams } from "react-router-dom";
-// import { useQuery, useLazyQuery } from "@apollo/client";
-
-// import { GET_USER_TRIPS } from "../../utils/queries";
-
-// import Auth from "../../utils/auth";
+import Auth from "../../utils/auth";
 
 const Profile = () => {
   // const [loadUserTrips, { called, loading, data }] = useLazyQuery(GET_USER_TRIPS);
@@ -50,9 +46,9 @@ const Profile = () => {
     }
   }
 
-  // if (!Auth.loggedIn()) {
-  //   return <Navigate to="/" />;
-  // }
+  if (!Auth.loggedIn()) {
+    return <Navigate to="/" />;
+  }
 
   // if (loading) {
   //   return <div>Loading...</div>;
