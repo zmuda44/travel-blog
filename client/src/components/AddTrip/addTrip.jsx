@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_TRIP } from "../../utils/mutations";
-import { ADD_DREAM_TRIP } from "../../utils/mutations";
+// import { ADD_TRIP } from "../../utils/mutations";
+// import { ADD_DREAM_TRIP } from "../../utils/mutations";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../../utils/auth";
@@ -18,14 +18,14 @@ const AddTrip = () => {
 
   const [dreamTrip, setDreamTrip] = useState(false);
 
-  const {
-    data: { username },
-  } = Auth.getProfile();
+  // const {
+  //   data: { username },
+  // } = Auth.getProfile();
 
-  const [addTrip, { loading: addTripLoading, data: dataAddTrip }] =
-    useMutation(ADD_TRIP);
-  const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] =
-    useMutation(ADD_DREAM_TRIP);
+  // const [addTrip, { loading: addTripLoading, data: dataAddTrip }] =
+  //   useMutation(ADD_TRIP);
+  // const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] =
+  //   useMutation(ADD_DREAM_TRIP);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -52,19 +52,19 @@ const AddTrip = () => {
       console.log(dreamTrip);
       if (dreamTrip == true) {
         console.log(dreamTrip);
-        await addDreamTrip({
-          variables: { location, journalEntry, username },
-        });
+        // await addDreamTrip({
+        //   variables: { location, journalEntry, username },
+        // });
       } else {
-        await addTrip({
-          variables: {
-            location,
-            journalEntry,
-            startTripDate,
-            endTripDate,
-            username,
-          },
-        });
+        // await addTrip({
+        //   variables: {
+        //     location,
+        //     journalEntry,
+        //     startTripDate,
+        //     endTripDate,
+        //     username,
+        //   },
+        // });
       }
 
       setFormState({
@@ -73,7 +73,7 @@ const AddTrip = () => {
         startTripDate: new Date(),
         endTripDate: new Date(),
       });
-      setDreamTrip(false); // Reset dream trip checkbox
+      // setDreamTrip(false); // Reset dream trip checkbox
 
       window.location.reload();
     } catch (e) {
@@ -82,14 +82,14 @@ const AddTrip = () => {
   };
 
   const handleDreamTripChange = () => {
-    setDreamTrip(!dreamTrip);
-    if (!dreamTrip) {
-      setFormState({
-        ...userFormState,
-        startTripDate: null,
-        endTripDate: null,
-      });
-    }
+    // setDreamTrip(!dreamTrip);
+    // if (!dreamTrip) {
+    //   setFormState({
+    //     ...userFormState,
+    //     startTripDate: null,
+    //     endTripDate: null,
+    //   });
+    // }
   };
 
   return (

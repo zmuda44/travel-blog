@@ -8,10 +8,11 @@ import UpdateTrip from '../UpdateTrip/updateTrip';
 
 function DreamTrips({ trips }) {
   // GraphQL mutations for removing and updating trips
-  const [removeTrip] = useMutation(REMOVE_TRIP);
+  // const [removeTrip] = useMutation(REMOVE_TRIP);
 
   // Get username from Auth profile
-  const { data: { username } } = Auth.getProfile();
+
+  
 
   // Local state for handling form data and form visibility
   const [formState, setFormState] = useState({});

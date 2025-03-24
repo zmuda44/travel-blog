@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Footer from "../../components/footer";
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../../utils/mutations";
+// import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import "./signUp.css";
 import mountains from "../../assets/mountains.png"; // Import the background image
@@ -13,7 +13,7 @@ const SignUp = () => {
     password: "",
   });
 
-  const [addUser] = useMutation(ADD_USER);
+  // const [addUser] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,11 +29,36 @@ const SignUp = () => {
     try {
       const { username, email, password } = userFormState;
 
-      const { data } = await addUser({
-        variables: { username, email, password },
-      });
+      // const { data } = await addUser({
+      //   variables: { username, email, password },
 
-      Auth.login(data.addUser.token);
+      const response = await fetch('/api/users/signup', 
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, email, password }),
+        }
+      )
+
+
+      const data = await response.json()
+
+      if (!response) {    
+        console.log(data)
+      }  
+      
+      console.log(data.token)   
+
+      // window.location.assign('/profile');
+      setFormState({
+        username: "",
+        email: "",
+        password: ""
+      })
+
+      Auth.login(data.token, data.user.user);
     } catch (e) {
       console.error(e);
     }

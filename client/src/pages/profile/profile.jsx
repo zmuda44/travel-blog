@@ -8,15 +8,10 @@ import DreamTrips from "../../components/Trips/dreamTrips";
 import "./profile.css";
 import natl_park from "../../assets/natl_park.png";
 import { Navigate, useParams } from "react-router-dom";
-import { useQuery, useLazyQuery } from "@apollo/client";
-
-import { GET_USER_TRIPS } from "../../utils/queries";
-
 import Auth from "../../utils/auth";
 
 const Profile = () => {
-  const [loadUserTrips, { called, loading, data }] =
-    useLazyQuery(GET_USER_TRIPS);
+  // const [loadUserTrips, { called, loading, data }] = useLazyQuery(GET_USER_TRIPS);
   // const user = data?.me || {};
 
   const upcomingTrips = [];
@@ -24,12 +19,12 @@ const Profile = () => {
   const dreamTrips = [];
 
   const [user, setUser] = useState({ trips: [] });
-  useEffect(() => {
-    loadUserTrips();
-    if (data) {
-      setUser(data.me);
-    }
-  }, [data, user.trips]);
+  // useEffect(() => {
+  //   loadUserTrips();
+  //   if (data) {
+  //     setUser(data.me);
+  //   }
+  // }, [data, user.trips]);
 
   for (const trip of user.trips) {
     let startTripDate = "";
@@ -55,9 +50,9 @@ const Profile = () => {
     return <Navigate to="/" />;
   }
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <div>
       <div>
