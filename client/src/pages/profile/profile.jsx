@@ -14,6 +14,8 @@ const Profile = () => {
   // const [loadUserTrips, { called, loading, data }] = useLazyQuery(GET_USER_TRIPS);
   // const user = data?.me || {};
 
+  let token = Auth.getToken()
+
   const upcomingTrips = [];
   const prevTrips = [];
   const dreamTrips = [];
@@ -34,6 +36,7 @@ const Profile = () => {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
+              'Authorization': `Bearer ${token}`
             }
     
           }
@@ -47,6 +50,7 @@ const Profile = () => {
         console.log('error caught: ' + err)
       }
     }
+    getUserData()
   })
 
   for (const trip of user.trips) {

@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
 }) 
 
 router.get('/me/', authMiddleware, async (req, res) => {
+  console.log('route hit')
   try {
     if (!req.user) {
       return res.status(401).send({ error: 'Authentication required' });
@@ -26,6 +27,8 @@ router.get('/me/', authMiddleware, async (req, res) => {
     if (!user) {
       return res.status(404).send({ error: 'User not found' });
     }
+
+    console.log(user)
 
     // Return the user data
     res.send(user);
