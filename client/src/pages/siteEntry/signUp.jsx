@@ -46,19 +46,19 @@ const SignUp = () => {
       const data = await response.json()
 
       if (!response) {    
-        console.log(data)
-      }  
-      
-      console.log(data.token)   
+        console.log('error:' + data)
+      }   
 
-      // window.location.assign('/profile');
+      Auth.login(data.token, data.user.username);
+      window.location.assign('/profile');
       setFormState({
         username: "",
         email: "",
         password: ""
       })
 
-      Auth.login(data.token, data.user.user);
+      
+
     } catch (e) {
       console.error(e);
     }

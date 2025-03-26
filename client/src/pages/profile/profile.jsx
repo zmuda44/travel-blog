@@ -26,6 +26,29 @@ const Profile = () => {
   //   }
   // }, [data, user.trips]);
 
+  useEffect(() => {
+    const getUserData = async ()=> {
+      try {
+        const response = await fetch('/api/users/me', 
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            }
+    
+          }
+        )
+
+        const data = await response.json()
+
+        console.log(data)
+      }
+      catch (err) {
+        console.log('error caught: ' + err)
+      }
+    }
+  })
+
   for (const trip of user.trips) {
     let startTripDate = "";
     if (trip.startTripDate) {
