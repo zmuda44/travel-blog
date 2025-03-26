@@ -37,14 +37,12 @@ const Profile = () => {
             headers: {
               "Content-Type": "application/json",
               'Authorization': `Bearer ${token}`
-            }
-    
+            }    
           }
         )
-
         const data = await response.json()
-
-        console.log(data)
+        
+        setUser(data)
       }
       catch (err) {
         console.log('error caught: ' + err)
