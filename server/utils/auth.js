@@ -1,5 +1,6 @@
 // const { GraphQLError } = require("graphql");
 const jwt = require("jsonwebtoken");
+const { User } = require('../models');
 
 // Secret key for JWT signing and verification
 const secret = "mysecretssshhhhhhh";
@@ -15,7 +16,8 @@ module.exports = {
   },
 
   // Middleware function to authenticate requests
-  authMiddleware: function ({ req }) {
+  authMiddleware: function (req, res, next) {
+
     // Extract token from request body, query parameters, or authorization header
     let token = req.body.token || req.query.token || req.headers.authorization;
 
@@ -40,7 +42,7 @@ module.exports = {
     }
 
     // Return the modified request object
-    return req;
+    next();
   },
 
   // Function to generate a JWT token
@@ -51,6 +53,41 @@ module.exports = {
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
+
+
+//from chat gpt
+
+// authMiddleware = async (req, res, next) => {
+//   // Get token from Authorization header
+//   const token = req.headers.authorization || '';
+
+//   if (!token) {
+//     return res.status(401).json({ message: 'You need to be logged in!' });
+//   }
+
+//   try {
+//     // Remove 'Bearer ' part of the token if it exists
+//     const tokenWithoutBearer = token.replace(/^Bearer\s/, '');
+    
+//     // Verify the token and decode the user payload
+//     const decoded = jwt.verify(tokenWithoutBearer, 'your-secret-key');
+    
+//     // Find the user based on the decoded ID
+//     const user = await User.findById(decoded._id);
+
+//     if (!user) {
+//       return res.status(401).json({ message: 'Invalid/Expired token' });
+//     }
+
+//     // Attach the user to the request object for use in route handlers
+//     req.user = user;
+
+//     // Continue to the next middleware or route handler
+//     next();
+//   } catch (err) {
+//     return res.status(401).json({ message: 'Invalid/Expired token' });
+//   }
+// };
 
 
 
@@ -82,5 +119,6 @@ module.exports = {
 //     // send to next endpoint
 //     next();
 //   },
+
 
 

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-const { signToken, AuthenticationError } = require("../../utils/auth");
+const { signToken, AuthenticationError, authMiddleware } = require("../../utils/auth");
 
 
 router.get('/', async (req, res) => {
@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
 }) 
 
 router.get('/me/', authMiddleware, async (req, res) => {
+
   try {
     if (!req.user) {
       return res.status(401).send({ error: 'Authentication required' });
