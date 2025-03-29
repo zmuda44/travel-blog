@@ -3,7 +3,7 @@ import Footer from "../../components/footer"; // Import Footer component for the
 import "./login.css"; // Import CSS for styling the login page
 import baobabs from "../../assets/baobabs.png"; // Import background image for the login page
 import { useState } from "react"; // Import useState hook for managing local state
-// import Auth from "../../utils/auth"; // Import authentication utility for managing user sessions
+import Auth from "../../utils/auth"; // Import authentication utility for managing user sessions
 // import { useMutation } from "@apollo/client"; // Import useMutation hook for GraphQL mutations
 // import { LOGIN_USER } from "../../utils/mutations"; // Import GraphQL mutation for user login
 
@@ -35,8 +35,6 @@ function Login() {
     try {
       const { username, password } = userFormState;
 
-      console.log(username, password); // Log form values for debugging
-
       // Perform the login mutation
       // const { data } = await loginUser({
       //   variables: { username, password },
@@ -50,10 +48,15 @@ function Login() {
         body: JSON.stringify({ username, password }),
       })
 
-      console.log(response); // Log response data for debugging
+      const data = await response.json() // Log response data for debugging
+      
+      if (!data.user) {
+        console.log(data)
+      }      
 
       // Save token to local storage and redirect user upon successful login
-      // Auth.login(data.loginUser.token);
+      Auth.login(data.token, data.user.username);
+      window.location.assign('/profile');
     } catch (e) {
       console.error(e); // Log errors if login fails
     }
