@@ -90,9 +90,27 @@ router.post('/signup', async (req, res) => {
   }
 })
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body
+  try {
+    const user = await User.findOne({ username })
+    if (!user) {
+      return res.send({"message": "No user found with the username"})
+    }
 
-  res.send(req.body)
+    const correctPw = await user.isCorrectPassword(password);
+
+    if (!correctPw) {
+      return res.send({"message": "Incorrect Password entered"})
+    }
+
+    const token = signToken(user);
+
+    res.send({ user, token })
+  }
+  catch (err) {
+    console.log(err)
+  }
 })
 
 module.exports = router
