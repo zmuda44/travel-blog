@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-// import { ADD_TRIP } from "../../utils/mutations";
-// import { ADD_DREAM_TRIP } from "../../utils/mutations";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../../utils/auth";
@@ -22,11 +20,6 @@ const AddTrip = () => {
   //   data: { username },
   // } = Auth.getProfile();
 
-  // const [addTrip, { loading: addTripLoading, data: dataAddTrip }] =
-  //   useMutation(ADD_TRIP);
-  // const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] =
-  //   useMutation(ADD_DREAM_TRIP);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -45,6 +38,8 @@ const AddTrip = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    let token = Auth.getToken()
+
     try {
       const { location, journalEntry, startTripDate, endTripDate } =
         userFormState;
@@ -56,28 +51,20 @@ const AddTrip = () => {
         //   variables: { location, journalEntry, username },
         // });
       } else {
-        // await addTrip({
-        //   variables: {
-        //     location,
-        //     journalEntry,
-        //     startTripDate,
-        //     endTripDate,
-        //     username,
-        //   },
-        // });
-
         console.log(userFormState)
         const response = await fetch('/api/trips/create', 
           {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",              
+              "Content-Type": "application/json",
+              'Authorization': `Bearer ${token}`              
             },
             body: JSON.stringify(userFormState)
           }
         )
 
         const data = await response.json()
+
       }
 
       setFormState({
@@ -86,7 +73,8 @@ const AddTrip = () => {
         startTripDate: new Date(),
         endTripDate: new Date(),
       });
-      // setDreamTrip(false); // Reset dream trip checkbox
+
+      setDreamTrip(false); // Reset dream trip checkbox
 
       window.location.reload();
     } catch (e) {

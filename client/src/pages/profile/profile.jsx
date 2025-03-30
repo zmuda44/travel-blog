@@ -41,7 +41,6 @@ const Profile = () => {
           }
         )
         const data = await response.json()
-        
         setUser(data)
       }
       catch (err) {
@@ -49,7 +48,7 @@ const Profile = () => {
       }
     }
     getUserData()
-  })
+  }, [token])
 
   for (const trip of user.trips) {
     let startTripDate = "";

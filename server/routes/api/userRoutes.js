@@ -40,7 +40,6 @@ router.post('/signup', async (req, res) => {
   const {username, email, password} = req.body
 
   try {
-
     const submittedUser = await User.findOne({
       username: username
     })
@@ -48,6 +47,7 @@ router.post('/signup', async (req, res) => {
     if(submittedUser) {
       return res.send("Username already in system, please try again")
     }
+
 
     const user = await User.create({
       username: username,
