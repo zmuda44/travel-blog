@@ -1,7 +1,9 @@
 const router = require('express').Router();
-const { Trip } = require('../../models')
+const { Trip, User } = require('../../models')
+const { signToken, AuthenticationError, authMiddleware } = require("../../utils/auth");
 
-router.post('/create', async (req, res) => {
+
+router.post('/create', authMiddleware, async (req, res) => {
   const { location, journalEntry, tripDate, startTripDate, endTripDate } = req.body
   try {
     const trip = await Trip.create({
@@ -11,8 +13,17 @@ router.post('/create', async (req, res) => {
       endTripDate
     })
 
-    
-    console.log(trip)
+    if (!req.user) {
+      return res.status(401).send({ error: 'Authentication required' });
+    }
+
+    const user = await User.findOneAndUpdate (
+      { _id: req.user._id },
+      { $addToSet: { trips: trip } },
+      { new: true, runValidators: true }
+    )
+
+    res.send( {user, trip} )
   }
   catch (err) {
     console.log(err)
