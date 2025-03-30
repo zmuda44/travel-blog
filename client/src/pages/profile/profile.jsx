@@ -21,12 +21,6 @@ const Profile = () => {
   const dreamTrips = [];
 
   const [user, setUser] = useState({ trips: [] });
-  // useEffect(() => {
-  //   loadUserTrips();
-  //   if (data) {
-  //     setUser(data.me);
-  //   }
-  // }, [data, user.trips]);
 
   useEffect(() => {
     const getUserData = async ()=> {
@@ -50,7 +44,10 @@ const Profile = () => {
     getUserData()
   }, [token])
 
+  console.log(user)
+
   for (const trip of user.trips) {
+    console.log(trip)
     let startTripDate = "";
     if (trip.startTripDate) {
       startTripDate = new Date(trip.startTripDate).getTime();
@@ -58,15 +55,15 @@ const Profile = () => {
       startTripDate = "";
     }
 
-    if (startTripDate === "") {
-      console.log("Dream trip");
-      dreamTrips.push(trip);
-    } else if (startTripDate > Date.now()) {
-      console.log("Upcoming trip");
-      upcomingTrips.push(trip);
-    } else {
-      console.log("Previous trip");
-      prevTrips.push(trip);
+    if (trip.dreamTrip == true) {
+      dreamTrips.push(trip)
+    } 
+    else {
+       if (startTripDate > Date.now()) {
+        upcomingTrips.push(trip);
+      } else {
+        prevTrips.push(trip);
+      }
     }
   }
 

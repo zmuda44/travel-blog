@@ -9,6 +9,7 @@ The Travel blog was originally a collaborative project. See link for details, an
 Added features and improved functionality:
 Dynamic copyright date
 changed backend to mongoose from GraphQL
+changed dream trip definition from no date to a separate option
 
 See below for original features of collaborative project:
 

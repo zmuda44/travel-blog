@@ -4,13 +4,15 @@ const { signToken, AuthenticationError, authMiddleware } = require("../../utils/
 
 
 router.post('/create', authMiddleware, async (req, res) => {
-  const { location, journalEntry, tripDate, startTripDate, endTripDate } = req.body
+
+  const { location, journalEntry, tripDate, startTripDate, endTripDate, dreamTrip } = req.body
   try {
     const trip = await Trip.create({
       location,
       journalEntry,
       startTripDate,
-      endTripDate
+      endTripDate,
+      dreamTrip
     })
 
     if (!req.user) {
