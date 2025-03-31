@@ -4,13 +4,15 @@ const { signToken, AuthenticationError, authMiddleware } = require("../../utils/
 
 
 router.post('/create', authMiddleware, async (req, res) => {
-  const { location, journalEntry, tripDate, startTripDate, endTripDate } = req.body
+
+  const { location, journalEntry, tripDate, startTripDate, endTripDate, dreamTrip } = req.body
   try {
     const trip = await Trip.create({
       location,
       journalEntry,
       startTripDate,
-      endTripDate
+      endTripDate,
+      dreamTrip
     })
 
     if (!req.user) {
@@ -29,5 +31,69 @@ router.post('/create', authMiddleware, async (req, res) => {
     console.log(err)
   }  
 })
+
+//Delete route to delete trip 
+// api/trips/:id
+
+router.delete('/:id', async (req, res) => {
+
+  try {
+    const trip = await Trip.findOneAndDelete({ _id: req.params.id })
+
+    if(!trip) {
+      res.send("Problem deleting trip from Trips")
+    }
+
+    const user = await User.findOneAndUpdate(
+        { _id: req.body._id },
+        { $pull: { trips: req.params.id } },
+        { new: true }
+    )
+    if(!user) {
+      res.send("Problem deleting trip from User")
+    }
+
+            // const user = await User.findOneAndUpdate(
+            //   { _id: context.user._id },
+            //   { $pull: { trips: args.tripId } },
+            //   { new: true }
+            // ).populate('trips'); // Populate trips after the update
+
+    res.send(trip)
+
+  }
+  catch (err) {
+    console.log('error is ' + err)
+  }
+})
+
+router.put('/:id', async (req, res) => {
+  console.log(req.body)
+  try {
+    const trip = await Trip.findOneAndUpdate({ _id: req.params.id }, 
+      { $set: { location: req.body.location, 
+        journalEntry: req.body.journalEntry, 
+        startTripDate: req.body.startTripDate, 
+        endTripDate: req.body.endTripDate, 
+        dreamTrip: req.body.dreamTrip } },
+      { runValidators: true, new: true }
+    )
+
+    if (!trip) {
+      res.send({message: "No trip found"})
+    }
+
+    res.send(trip)
+  }
+  catch (err) {
+    console.log(err)
+  }
+})
+
+
+
+
+
+
 
 module.exports = router

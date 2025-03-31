@@ -4,8 +4,6 @@ import "./login.css"; // Import CSS for styling the login page
 import baobabs from "../../assets/baobabs.png"; // Import background image for the login page
 import { useState } from "react"; // Import useState hook for managing local state
 import Auth from "../../utils/auth"; // Import authentication utility for managing user sessions
-// import { useMutation } from "@apollo/client"; // Import useMutation hook for GraphQL mutations
-// import { LOGIN_USER } from "../../utils/mutations"; // Import GraphQL mutation for user login
 
 function Login() {
   // Initialize form state with username and password fields
@@ -13,9 +11,6 @@ function Login() {
     username: "",
     password: "",
   });
-
-  // Define mutation hook for logging in users
-  // const [loginUser, { error, data }] = useMutation(LOGIN_USER);
 
   // Handle changes in form input fields
   const handleChange = (event) => {
@@ -34,11 +29,6 @@ function Login() {
 
     try {
       const { username, password } = userFormState;
-
-      // Perform the login mutation
-      // const { data } = await loginUser({
-      //   variables: { username, password },
-      // });
 
       const response = await fetch("/api/users/login", {
         method: "POST",

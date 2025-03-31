@@ -2,9 +2,7 @@ import React from 'react';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import './trips.css';
-import { useQuery } from '@apollo/client'; // Import useQuery for GraphQL queries
-import { GET_USER_TRIPS } from '../../utils/queries'; // Import the query to fetch user trips
-import UpcomingTripsComponent from '../../components/Trips/upcomingTrips'; // Import the upcoming trips component to display individual trips
+// import UpcomingTripsComponent from '../../components/Trips/upcomingTrips'; // Import the upcoming trips component to display individual trips
 
 
 const UpcomingTrips = () => { 

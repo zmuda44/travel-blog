@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import Auth from '../../utils/auth';
-import { useMutation } from '@apollo/client';
-import { UPDATE_TRIP, UPDATE_DREAM_TRIP } from '../../utils/mutations';
 
 
 function UpdateTrip({ trip }) {
+
   const tripId = trip._id
 
   const formattedStartDate = new Date(trip.startTripDate).toLocaleDateString('en-US', {
@@ -23,11 +22,8 @@ function UpdateTrip({ trip }) {
     journalEntry: trip.journalEntry,
     startTripDate: trip.startTripDate || null,
     endTripDate: trip.endTripDate || null,
-  });
-
-  const [updateTrip] = useMutation(UPDATE_TRIP);
-  const [updateDreamTrip] = useMutation(UPDATE_DREAM_TRIP);
-  
+    dreamTrip: trip.dreamTrip
+  });  
 
   const { data: { username } } = Auth.getProfile();
 
@@ -50,29 +46,27 @@ function UpdateTrip({ trip }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { location, journalEntry, startTripDate, endTripDate } = userFormState;
     
-      if (!startTripDate && !endTripDate) {
-        console.log(updateDreamTrip)
-        await updateDreamTrip({
-          variables: { tripId, location, journalEntry, username },
-        });
-      }
-      else {
+    try {
+      const response = await fetch(`/api/trips/${tripId}`,
+        {
+          method: 'PUT',          
+          headers: {
+            "Content-type": 'application/json',
+          },
+          body: JSON.stringify(userFormState)
+        },
+      )
 
-        await updateTrip({
-          variables: { tripId, location, journalEntry, username, startTripDate, endTripDate },
-        });
-      }
+      const data = await response.json()
+
       window.location.reload()
+
     }
- 
-
-
-
-    
-
+    catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit}>

@@ -1,17 +1,15 @@
 
 import Auth from '../../utils/auth';
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-// import { REMOVE_TRIP, UPDATE_TRIP } from '../../utils/mutations';
 import UpdateTrip from '../UpdateTrip/updateTrip';
 
 
 function PreviousTrips({ trips }) {
-  // GraphQL mutations for removing and updating trips
-  // const [removeTrip] = useMutation(REMOVE_TRIP);
+
 
   // Get username from Auth profile
-  // const { data: { username } } = Auth.getProfile();
+  const { data: { _id } } = Auth.getProfile(); 
+
   // Local state for handling form data and form visibility
   const [formState, setFormState] = useState({});
   const [showFormState, setShowFormState] = useState({});
@@ -27,8 +25,17 @@ function PreviousTrips({ trips }) {
   // Handle trip deletion
   const handleDeleteTrip = async (tripId) => {
     try {
-      await removeTrip({ variables: { username, tripId } });
-      console.log('Trip deleted successfully');
+      const response = await fetch(`/api/trips/${tripId}`, 
+        { 
+          method: 'DELETE',
+          headers: {
+            "Content-Type": "application/json",
+          },          
+          body: JSON.stringify({_id}),
+        });
+
+        window.location.reload()
+      
     } catch (error) {
       console.error('Error deleting trip:', error);
     }

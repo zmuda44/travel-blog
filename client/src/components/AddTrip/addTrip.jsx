@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../../utils/auth";
@@ -12,6 +11,7 @@ const AddTrip = () => {
     tripDate: new Date(),
     startTripDate: new Date(),
     endTripDate: new Date(),
+    dreamTrip: false,
   });
 
   const [dreamTrip, setDreamTrip] = useState(false);
@@ -35,23 +35,24 @@ const AddTrip = () => {
     });
   };
 
+  const handleDreamTripChange = () => {
+    setDreamTrip(!dreamTrip);
+    if (!dreamTrip) {
+      setFormState({
+        ...userFormState,
+        dreamTrip: true
+    });
+    }
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    console.log(userFormState)
 
     let token = Auth.getToken()
 
     try {
-      const { location, journalEntry, startTripDate, endTripDate } =
-        userFormState;
-
-      console.log(dreamTrip);
-      if (dreamTrip == true) {
-        console.log(dreamTrip);
-        // await addDreamTrip({
-        //   variables: { location, journalEntry, username },
-        // });
-      } else {
-        console.log(userFormState)
         const response = await fetch('/api/trips/create', 
           {
             method: "POST",
@@ -63,9 +64,7 @@ const AddTrip = () => {
           }
         )
 
-        const data = await response.json()
-
-      }
+        const data = await response.json()      
 
       setFormState({
         location: "",
@@ -80,17 +79,6 @@ const AddTrip = () => {
     } catch (e) {
       console.error(e);
     }
-  };
-
-  const handleDreamTripChange = () => {
-    // setDreamTrip(!dreamTrip);
-    // if (!dreamTrip) {
-    //   setFormState({
-    //     ...userFormState,
-    //     startTripDate: null,
-    //     endTripDate: null,
-    //   });
-    // }
   };
 
   return (
@@ -133,7 +121,7 @@ const AddTrip = () => {
             checked={dreamTrip}
             onChange={handleDreamTripChange}
           />
-          Dream Trip (no specific dates)
+          Dream Trip
         </label>
         <button type="submit">Submit</button>
       </form>

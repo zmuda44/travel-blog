@@ -45,17 +45,14 @@ router.post('/signup', async (req, res) => {
     })
 
     if(submittedUser) {
-      return res.send("Username already in system, please try again")
+      return res.send({message: "Username already in system, please try again"})
     }
-
 
     const user = await User.create({
       username: username,
       email: email,
       password: password
-    })
-
-   
+    })   
 
     const token = signToken(user);
 
@@ -67,23 +64,11 @@ router.post('/signup', async (req, res) => {
 
     res.send({ user, token })
 
-
-
-    // const user = await User.create({
-    //   username: username,
-    //   email: email,
-    //   password: password
-    // })
-
-
-
     // if (!user.length) {
     //   res.status(404).json({message: "User not created"})
     // }
 
     // res.status(404).json({user})
-
-
   }
   catch (err) {
     console.log(err)
@@ -95,7 +80,7 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ username })
     if (!user) {
-      return res.send({"message": "No user found with the username"})
+      return res.send({message: "No user found with the username"})
     }
 
     const correctPw = await user.isCorrectPassword(password);

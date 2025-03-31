@@ -2,9 +2,7 @@ import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/header";
 import AddTrip from "../../components/AddTrip/addTrip";
-import UpcomingTrips from "../../components/Trips/upcomingTrips";
-import PreviousTrips from "../../components/Trips/previousTrips";
-import DreamTrips from "../../components/Trips/dreamTrips";
+import Trips from "../../components/Trips/Trips";
 import "./profile.css";
 import natl_park from "../../assets/natl_park.png";
 import { Navigate, useParams } from "react-router-dom";
@@ -21,12 +19,6 @@ const Profile = () => {
   const dreamTrips = [];
 
   const [user, setUser] = useState({ trips: [] });
-  // useEffect(() => {
-  //   loadUserTrips();
-  //   if (data) {
-  //     setUser(data.me);
-  //   }
-  // }, [data, user.trips]);
 
   useEffect(() => {
     const getUserData = async ()=> {
@@ -51,6 +43,7 @@ const Profile = () => {
   }, [token])
 
   for (const trip of user.trips) {
+
     let startTripDate = "";
     if (trip.startTripDate) {
       startTripDate = new Date(trip.startTripDate).getTime();
@@ -58,15 +51,15 @@ const Profile = () => {
       startTripDate = "";
     }
 
-    if (startTripDate === "") {
-      console.log("Dream trip");
-      dreamTrips.push(trip);
-    } else if (startTripDate > Date.now()) {
-      console.log("Upcoming trip");
-      upcomingTrips.push(trip);
-    } else {
-      console.log("Previous trip");
-      prevTrips.push(trip);
+    if (trip.dreamTrip == true) {
+      dreamTrips.push(trip)
+    } 
+    else {
+       if (startTripDate > Date.now()) {
+        upcomingTrips.push(trip);
+      } else {
+        prevTrips.push(trip);
+      }
     }
   }
 
@@ -93,20 +86,20 @@ const Profile = () => {
           <div className="trip-boxes-container">
             {/* Upcoming trips box */}
             <div id="upcoming-trips-box">
-              <Link to="/upcomingtrips">Upcoming Trips</Link>
-              <UpcomingTrips trips={upcomingTrips} />
+              {/* <Link to="/upcomingtrips">Upcoming Trips</Link> */}
+              <Trips trips={upcomingTrips} />
             </div>
 
             {/* Previous trips box */}
             <div id="previous-trips-box">
-              <Link to="/previoustrips">Previous Trips</Link>
-              <PreviousTrips trips={prevTrips} />
+              {/* <Link to="/previoustrips">Previous Trips</Link> */}
+              <Trips trips={prevTrips} />
             </div>
 
             {/* Dream trips box */}
             <div id="dream-trips-box">
-              <Link to="/dreamtrips">Dream Trips</Link>
-              <DreamTrips trips={dreamTrips} />
+              {/* <Link to="/dreamtrips">Dream Trips</Link> */}
+              <Trips trips={dreamTrips} />
             </div>
           </div>
         </div>

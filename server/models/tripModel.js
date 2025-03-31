@@ -33,6 +33,10 @@ const tripSchema = new mongoose.Schema({
     // Optional: Uncomment the next line to set the current date as the default
     default: null
   },
+  dreamTrip: {
+    type: Boolean,
+    default: false
+  },
   journalEntry: {
     type: String,
     // Optional: This field can be empty if no journal entry is provided
