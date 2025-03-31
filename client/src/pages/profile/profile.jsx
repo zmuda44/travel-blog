@@ -86,19 +86,19 @@ const Profile = () => {
           <div className="trip-boxes-container">
             {/* Upcoming trips box */}
             <div id="upcoming-trips-box">
-              <Link to="/upcomingtrips">Upcoming Trips</Link>
+              {/* <Link to="/upcomingtrips">Upcoming Trips</Link> */}
               <Trips trips={upcomingTrips} />
             </div>
 
             {/* Previous trips box */}
             <div id="previous-trips-box">
-              <Link to="/previoustrips">Previous Trips</Link>
+              {/* <Link to="/previoustrips">Previous Trips</Link> */}
               <Trips trips={prevTrips} />
             </div>
 
             {/* Dream trips box */}
             <div id="dream-trips-box">
-              <Link to="/dreamtrips">Dream Trips</Link>
+              {/* <Link to="/dreamtrips">Dream Trips</Link> */}
               <Trips trips={dreamTrips} />
             </div>
           </div>

@@ -2,8 +2,6 @@ import React from 'react'; // Import React library
 import Header from '../../components/header'; // Import Header component for page header
 import Footer from '../../components/footer'; // Import Footer component for page footer
 import './trips.css'; // Import CSS for styling the PreviousTrips page
-// import { useQuery } from '@apollo/client'; // Import useQuery hook to execute GraphQL queries
-// import { GET_USER_TRIPS } from '../../graphql/queries'; // Import GraphQL query to get user trips
 // import Trip from '../../components/trip'; // Import Trip component to display trip details
 
 const PreviousTrips = () => {

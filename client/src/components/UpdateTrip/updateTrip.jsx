@@ -3,6 +3,7 @@ import Auth from '../../utils/auth';
 
 
 function UpdateTrip({ trip }) {
+
   const tripId = trip._id
 
   const formattedStartDate = new Date(trip.startTripDate).toLocaleDateString('en-US', {
@@ -21,6 +22,7 @@ function UpdateTrip({ trip }) {
     journalEntry: trip.journalEntry,
     startTripDate: trip.startTripDate || null,
     endTripDate: trip.endTripDate || null,
+    dreamTrip: trip.dreamTrip
   });  
 
   const { data: { username } } = Auth.getProfile();
@@ -44,14 +46,26 @@ function UpdateTrip({ trip }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { location, journalEntry, startTripDate, endTripDate, dreamTrip } = userFormState;
     
-        await updateTrip({
-          variables: { tripId, location, journalEntry, username, startTripDate, endTripDate },
-        });
+    try {
+      const response = await fetch(`/api/trips/${tripId}`,
+        {
+          method: 'PUT',          
+          headers: {
+            "Content-type": 'application/json',
+          },
+          body: JSON.stringify(userFormState)
+        },
+      )
 
-        window.location.reload()
+      const data = await response.json()
+
+      window.location.reload()
+
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
 
   return (

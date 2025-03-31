@@ -36,14 +36,12 @@ router.post('/create', authMiddleware, async (req, res) => {
 // api/trips/:id
 
 router.delete('/:id', async (req, res) => {
-  console.log(req.params.id)
-  console.log(req.body)
 
   try {
     const trip = await Trip.findOneAndDelete({ _id: req.params.id })
 
     if(!trip) {
-      res.send("Problem deleting item from Trips")
+      res.send("Problem deleting trip from Trips")
     }
 
     const user = await User.findOneAndUpdate(
@@ -51,6 +49,9 @@ router.delete('/:id', async (req, res) => {
         { $pull: { trips: req.params.id } },
         { new: true }
     )
+    if(!user) {
+      res.send("Problem deleting trip from User")
+    }
 
             // const user = await User.findOneAndUpdate(
             //   { _id: context.user._id },
@@ -77,11 +78,19 @@ router.put('/:id', async (req, res) => {
         dreamTrip: req.body.dreamTrip } },
       { runValidators: true, new: true }
     )
+
+    if (!trip) {
+      res.send({message: "No trip found"})
+    }
+
+    res.send(trip)
   }
   catch (err) {
     console.log(err)
   }
 })
+
+
 
 
 
