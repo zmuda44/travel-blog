@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import Auth from '../../utils/auth';
-import { useMutation } from '@apollo/client';
-import { UPDATE_TRIP, UPDATE_DREAM_TRIP } from '../../utils/mutations';
 
 
 function UpdateTrip({ trip }) {
@@ -23,11 +21,7 @@ function UpdateTrip({ trip }) {
     journalEntry: trip.journalEntry,
     startTripDate: trip.startTripDate || null,
     endTripDate: trip.endTripDate || null,
-  });
-
-  const [updateTrip] = useMutation(UPDATE_TRIP);
-  const [updateDreamTrip] = useMutation(UPDATE_DREAM_TRIP);
-  
+  });  
 
   const { data: { username } } = Auth.getProfile();
 
@@ -51,28 +45,14 @@ function UpdateTrip({ trip }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { location, journalEntry, startTripDate, endTripDate } = userFormState;
+    const { location, journalEntry, startTripDate, endTripDate, dreamTrip } = userFormState;
     
-      if (!startTripDate && !endTripDate) {
-        console.log(updateDreamTrip)
-        await updateDreamTrip({
-          variables: { tripId, location, journalEntry, username },
-        });
-      }
-      else {
-
         await updateTrip({
           variables: { tripId, location, journalEntry, username, startTripDate, endTripDate },
         });
-      }
-      window.location.reload()
-    }
- 
 
-
-
-    
-
+        window.location.reload()
+  }
 
   return (
     <form onSubmit={handleSubmit}>

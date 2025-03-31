@@ -45,7 +45,7 @@ router.post('/signup', async (req, res) => {
     })
 
     if(submittedUser) {
-      return res.send("Username already in system, please try again")
+      return res.send({message: "Username already in system, please try again"})
     }
 
 

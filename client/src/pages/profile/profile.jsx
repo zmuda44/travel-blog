@@ -2,9 +2,7 @@ import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/header";
 import AddTrip from "../../components/AddTrip/addTrip";
-import UpcomingTrips from "../../components/Trips/upcomingTrips";
-import PreviousTrips from "../../components/Trips/previousTrips";
-import DreamTrips from "../../components/Trips/dreamTrips";
+import Trips from "../../components/Trips/Trips";
 import "./profile.css";
 import natl_park from "../../assets/natl_park.png";
 import { Navigate, useParams } from "react-router-dom";
@@ -89,19 +87,19 @@ const Profile = () => {
             {/* Upcoming trips box */}
             <div id="upcoming-trips-box">
               <Link to="/upcomingtrips">Upcoming Trips</Link>
-              <UpcomingTrips trips={upcomingTrips} />
+              <Trips trips={upcomingTrips} />
             </div>
 
             {/* Previous trips box */}
             <div id="previous-trips-box">
               <Link to="/previoustrips">Previous Trips</Link>
-              <PreviousTrips trips={prevTrips} />
+              <Trips trips={prevTrips} />
             </div>
 
             {/* Dream trips box */}
             <div id="dream-trips-box">
               <Link to="/dreamtrips">Dream Trips</Link>
-              <DreamTrips trips={dreamTrips} />
+              <Trips trips={dreamTrips} />
             </div>
           </div>
         </div>

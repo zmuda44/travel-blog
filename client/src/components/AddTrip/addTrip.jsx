@@ -75,7 +75,7 @@ const AddTrip = () => {
 
       setDreamTrip(false); // Reset dream trip checkbox
 
-      // window.location.reload();
+      window.location.reload();
     } catch (e) {
       console.error(e);
     }

@@ -13,8 +13,6 @@ const SignUp = () => {
     password: "",
   });
 
-  // const [addUser] = useMutation(ADD_USER);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -28,9 +26,6 @@ const SignUp = () => {
 
     try {
       const { username, email, password } = userFormState;
-
-      // const { data } = await addUser({
-      //   variables: { username, email, password },
 
       const response = await fetch('/api/users/signup', 
         {

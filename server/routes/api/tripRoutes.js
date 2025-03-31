@@ -37,15 +37,28 @@ router.post('/create', authMiddleware, async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   console.log(req.params.id)
+  console.log(req.body)
 
   try {
-    const response = await Trip.findOneAndDelete({ _id: req.params.id })
+    const trip = await Trip.findOneAndDelete({ _id: req.params.id })
 
-    // if(!reponse) {
-    //   res.send("Problem deleting item")
-    // }
+    if(!trip) {
+      res.send("Problem deleting item from Trips")
+    }
 
-    console.log(response)
+    const user = await User.findOneAndUpdate(
+        { _id: req.body._id },
+        { $pull: { trips: req.params.id } },
+        { new: true }
+    )
+
+            // const user = await User.findOneAndUpdate(
+            //   { _id: context.user._id },
+            //   { $pull: { trips: args.tripId } },
+            //   { new: true }
+            // ).populate('trips'); // Populate trips after the update
+
+    res.send(trip)
 
   }
   catch (err) {
@@ -53,7 +66,8 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
-router.put('api/trips/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
+  console.log(req.body)
   try {
     const trip = await Trip.findOneAndUpdate({ _id: req.params.id }, 
       { $set: { location: req.body.location, 
