@@ -44,10 +44,8 @@ const Profile = () => {
     getUserData()
   }, [token])
 
-  console.log(user)
-
   for (const trip of user.trips) {
-    console.log(trip)
+
     let startTripDate = "";
     if (trip.startTripDate) {
       startTripDate = new Date(trip.startTripDate).getTime();

@@ -32,4 +32,45 @@ router.post('/create', authMiddleware, async (req, res) => {
   }  
 })
 
+//Delete route to delete trip 
+// api/trips/:id
+
+router.delete('/:id', async (req, res) => {
+  console.log(req.params.id)
+
+  try {
+    const response = await Trip.findOneAndDelete({ _id: req.params.id })
+
+    // if(!reponse) {
+    //   res.send("Problem deleting item")
+    // }
+
+    console.log(response)
+
+  }
+  catch (err) {
+    console.log('error is ' + err)
+  }
+})
+
+router.put('api/trips/:id', async (req, res) => {
+  try {
+    const trip = await Trip.findOneAndUpdate({ _id: req.params.id }, 
+      { $set: { location: req.body.location, 
+        journalEntry: req.body.journalEntry, 
+        startTripDate: req.body.startTripDate, 
+        endTripDate: req.body.endTripDate, 
+        dreamTrip: req.body.dreamTrip } },
+      { runValidators: true, new: true }
+    )
+  }
+  catch (err) {
+    console.log(err)
+  }
+})
+
+
+
+
+
 module.exports = router

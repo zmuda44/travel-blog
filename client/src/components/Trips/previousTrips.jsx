@@ -27,8 +27,12 @@ function PreviousTrips({ trips }) {
   // Handle trip deletion
   const handleDeleteTrip = async (tripId) => {
     try {
-      await removeTrip({ variables: { username, tripId } });
-      console.log('Trip deleted successfully');
+      const response = await fetch(`/api/trips/${tripId}`, 
+        { method: 'PUT',
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+      });
+      console.log(response);
     } catch (error) {
       console.error('Error deleting trip:', error);
     }

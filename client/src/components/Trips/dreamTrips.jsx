@@ -1,18 +1,9 @@
-
 import Auth from '../../utils/auth';
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { REMOVE_TRIP, UPDATE_TRIP } from '../../utils/mutations';
 import UpdateTrip from '../UpdateTrip/updateTrip';
 
 
-function DreamTrips({ trips }) {
-  // GraphQL mutations for removing and updating trips
-  // const [removeTrip] = useMutation(REMOVE_TRIP);
-
-  // Get username from Auth profile
-
-  
+function DreamTrips({ trips }) {  
 
   // Local state for handling form data and form visibility
   const [formState, setFormState] = useState({});
@@ -29,8 +20,19 @@ function DreamTrips({ trips }) {
   // Handle trip deletion
   const handleDeleteTrip = async (tripId) => {
     try {
-      await removeTrip({ variables: { username, tripId } });
-      console.log('Trip deleted successfully');
+      const response = await fetch(`/api/trips/${tripId}`, 
+        {          
+          method: 'DELETE'
+        }
+      )
+      
+      if (!response) {
+        console.log('no response')
+      }
+
+      const data = await response.json()
+
+      console.log(data)
     } catch (error) {
       console.error('Error deleting trip:', error);
     }
