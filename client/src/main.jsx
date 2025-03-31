@@ -10,6 +10,7 @@ import PreviousTrips from "./pages/trips/previousTrips.jsx"; // Import the Previ
 import Profile from "./pages/profile/profile.jsx"; // Import the Profile page component
 import SignUp from "./pages/siteEntry/signUp.jsx"; // Import the SignUp page component
 import UpcomingTrips from "./pages/trips/upcomingTrips.jsx"; // Import the UpcomingTrips page component
+import PublicProfiles from './pages/public-profiles/profiles'
 import './App.css'
 
 // Create a router with routes and their corresponding components
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         path: "/upcomingtrips", // Path for the UpcomingTrips page
         element: <UpcomingTrips />, // Component rendered for UpcomingTrips
       },
+      {
+        path: "/public", // Path for the public profiles
+        element: <PublicProfiles />
+      }
     ],
   },
 ]);

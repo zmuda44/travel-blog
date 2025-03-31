@@ -6,8 +6,8 @@ const Header = () => {
   return (
     // Define the header section for the webpage
     <header>
-      <Link to="/" className="brand-link">
-        Nomad Notes
+      <Link to="/public" className="brand-link">
+        Public Profiles
       </Link>
 
       {/* Navigation section */}

@@ -2,7 +2,6 @@ import useState from "react"; // Import useState hook from React (note: this sho
 import { Link } from "react-router-dom"; // Import Link component for navigation between routes
 import Footer from "../../components/footer"; // Import the Footer component
 import { useQuery } from "@apollo/client"; // Import useQuery hook for GraphQL queries (currently not used)
-// import { GET_ME } from "../../utils/queries"; // Uncomment to use the GET_ME query
 import "./landing.css"; // Import CSS file for styling the landing page
 import landingbg from "../../assets/landingbg.png"; // Import background image for the landing page
 
