@@ -24,8 +24,6 @@ function PublicUser () {
         const data = await response.json()
 
         setUser(data)
-
-
       }
       catch (err) {
         console.log(err)
@@ -34,10 +32,20 @@ function PublicUser () {
     getUserProfile()
   }, [])
 
-console.log(user)
+console.log(user.trips)
 
   return (
-    <div>You have found {user.username}'s profile</div>
+    <div>
+      {user && (
+        <>
+        <p>You have found {user.username}'s profile</p>
+        <p>Number of Trips: {user.trips.length}</p>  
+        </>     
+      )}
+    </div>
+
+
+
   )
 }
 

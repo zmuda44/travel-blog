@@ -104,7 +104,7 @@ router.post('/login', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const id = req.params.id
   
-  const user = await User.findById(id).select("-password")
+  const user = await User.findById(id).select("-password").populate("trips")
 
   if(!user) {
     res.send({ message: "No profile for this user"})
