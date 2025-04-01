@@ -97,6 +97,7 @@ function UpdateTrip({ trip }) {
               placeholder="Location of trip"
               name="location"
               type="text"
+              required
               value={userFormState.location}
               onChange={handleInputChange}
               onFocus={handleOnFocus}

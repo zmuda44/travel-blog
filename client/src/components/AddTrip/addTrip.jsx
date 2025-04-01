@@ -90,6 +90,7 @@ const AddTrip = () => {
           placeholder="Location of trip"
           name="location"
           type="text"
+          required
           value={userFormState.location}
           onChange={handleChange}
         />

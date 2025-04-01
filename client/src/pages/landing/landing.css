@@ -49,8 +49,7 @@ h1 {
 p {
   font-family: "Lora", serif; /* Serif font for a classic look */
   font-weight: bold; /* Bold text for emphasis */
-  font-size: 2.5rem; /* Large font size for readability */
-  margin-bottom: 8rem; /* Space below the paragraph */
+  font-size: 2.5rem; /* Large font size for readability */  
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Adds a shadow effect for better contrast */
 }
 
