@@ -10,6 +10,7 @@ Added features and improved functionality:
 Dynamic copyright date
 changed backend to mongoose from GraphQL
 changed dream trip definition from no date to a separate option
+added additional error checking for blank trip location fields.
 
 See below for original features of collaborative project:
 

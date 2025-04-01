@@ -98,4 +98,20 @@ router.post('/login', async (req, res) => {
   }
 })
 
+// Get route to retrieve an individual user by id
+// api/user/:id
+
+router.get('/:id', async (req, res) => {
+  const id = req.params.id
+  
+  const user = await User.findById(id).select("-password")
+
+  if(!user) {
+    res.send({ message: "No profile for this user"})
+  }
+
+  res.send(user)
+  
+})
+
 module.exports = router

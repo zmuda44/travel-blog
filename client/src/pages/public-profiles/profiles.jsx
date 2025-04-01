@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import natl_park from "../../assets/natl_park.png";
 import Header from "../../components/header";
 import ProfileCard from '../../components/Profiles/profile-card'
+import "./public-profiles.css";
 
 function PublicProfiles () {
   const [users, setUsers] = useState([])

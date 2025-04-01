@@ -11,6 +11,7 @@ import Profile from "./pages/profile/profile.jsx"; // Import the Profile page co
 import SignUp from "./pages/siteEntry/signUp.jsx"; // Import the SignUp page component
 import UpcomingTrips from "./pages/trips/upcomingTrips.jsx"; // Import the UpcomingTrips page component
 import PublicProfiles from './pages/public-profiles/profiles'
+import PublicUser from './pages/public-profiles/public-user.jsx'
 import './App.css'
 
 // Create a router with routes and their corresponding components
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/public", // Path for the public profiles
         element: <PublicProfiles />
+      },
+      {
+        path: "/public/:id", // Path for the public profiles
+        element: <PublicUser />
       }
     ],
   },
