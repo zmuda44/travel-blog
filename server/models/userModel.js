@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Trip' // Reference to the Trip model, allows for linking trips to the user
     }],
-    friends: [{
+    following: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User' // Reference to the User model, allows for linking friends to the user
     }]
