@@ -99,12 +99,12 @@ router.post('/login', async (req, res) => {
 })
 
 // Get route to retrieve an individual user by id
-// api/user/:id
+// api/users/:id
 
 router.get('/:id', async (req, res) => {
   const id = req.params.id
-  
-  const user = await User.findById(id).select("-password")
+
+  const user = await User.findById(id).select("-password").populate("trips")
 
   if(!user) {
     res.send({ message: "No profile for this user"})
@@ -113,5 +113,40 @@ router.get('/:id', async (req, res) => {
   res.send(user)
   
 })
+
+// Post route to follow a user
+// api/users/:id/follow
+
+router.post('/:id/follow', authMiddleware, async (req, res) => {
+  const id = req.params.id
+  const myId = req.user._id
+
+  if(!myId) {
+    res.send({ message: "login to follow user" })
+  }
+
+  if (id === myId.toString()) {
+    return res.status(400).json({ message: "You cannot follow yourself" });
+  }
+ 
+  const me = await User.findById(myId).select("-password")
+  const user = await User.findById(id).select("-password")
+  if (!user) {
+    res.send({ message: "no user found to follow"})
+  }
+
+  if (me.following.includes(user._id)) {
+    return res.status(400).json({ message: "You are already following this user" });
+  }
+
+  me.following.push(user._id);
+  await me.save(); 
+  
+  console.log(user)
+})
+
+//Delete request to delete follower from user's array
+
+router.delete('/:id')
 
 module.exports = router
