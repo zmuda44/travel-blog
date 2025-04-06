@@ -67,8 +67,6 @@ const Profile = () => {
     return <Navigate to="/" />;
   }
 
-  console.log(user.following)
-
   // if (loading) {
   //   return <div>Loading...</div>;
   // }
