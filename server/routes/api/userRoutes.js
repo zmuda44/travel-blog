@@ -142,14 +142,12 @@ router.post('/:id/follow', authMiddleware, async (req, res) => {
   await me.save();
   
   res.send(me)
-  console.log("followed")
-  console.log(me)
 })
 
 //Delete request to delete follower from user's array
 
 router.delete('/:id/unfollow', authMiddleware, async (req, res) => {
-  console.log("unfollow")
+
   const id = req.params.id
   const myId = req.user._id
 
@@ -164,7 +162,6 @@ router.delete('/:id/unfollow', authMiddleware, async (req, res) => {
   const me = await User.findById(myId).select("-password")
   const user = await User.findById(id).select("-password")
 
-  console.log(user)
   if (!user) {
     res.send({ message: "no user found to unfollow"})
   }
