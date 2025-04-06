@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import Auth from "../../utils/auth";
+import Header from "../../components/header";
 
 function PublicUser () {
   const [user, setUser] = useState("");
@@ -70,7 +71,7 @@ function PublicUser () {
         )
         }
         else {
-          const response = fetch(`/api/users/${id}/follow`, 
+          const response = fetch(`/api/users/${id}/unfollow`, 
             {
               method: "DELETE",
               headers: {"Content-Type": "application/json", 'Authorization': `Bearer ${token}`},           
@@ -87,18 +88,22 @@ function PublicUser () {
   
   return (
     <div>
+      <div>
+        <Header />
+      </div>
       {user && (
         <>
         <div className="user-info">
           <p>You have found {user.username}'s profile</p>
           <p>Number of Trips: {user.trips.length}</p> 
-        </div>
-
-        <div className="friends-block">
           {me && (
             followed == true ? <button onClick={toggleFollowUser}>Follow</button> : 
             <button onClick={toggleFollowUser}>Unfollow</button>
           )}
+        </div>
+
+        <div className="friends-block">
+          
         </div> 
         </>     
       )}

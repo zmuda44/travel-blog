@@ -22,8 +22,9 @@ router.get('/me/', authMiddleware, async (req, res) => {
     }
 
     // Find the user by the ID that is decoded from the JWT token
-    const user = await User.findById(req.user._id).populate('trips');
+    const user = await User.findById(req.user._id).populate('trips').populate('following');
 
+    console.log(user)
     if (!user) {
       return res.status(404).send({ error: 'User not found' });
     }
@@ -59,8 +60,6 @@ router.post('/signup', async (req, res) => {
     if(!user) {
       return res.send("User not created")
     }
-
-    console.log(token)
 
     res.send({ user, token })
 
@@ -131,6 +130,10 @@ router.post('/:id/follow', authMiddleware, async (req, res) => {
  
   const me = await User.findById(myId).select("-password")
   const user = await User.findById(id).select("-password")
+
+  console.log(`me ${me}`)
+  console.log(`user ${user}`)
+
   if (!user) {
     res.send({ message: "no user found to follow"})
   }
@@ -147,6 +150,31 @@ router.post('/:id/follow', authMiddleware, async (req, res) => {
 
 //Delete request to delete follower from user's array
 
-router.delete('/:id')
+router.post('/:id/unfollow', authMiddleware, async (req, res) => {
+  const id = req.params.id
+  const myId = req.user._id
 
+  if(!myId) {
+    res.send({ message: "login to follow user" })
+  }
+
+  if (id === myId.toString()) {
+    return res.status(400).json({ message: "You cannot follow yourself" });
+  }
+ 
+  const me = await User.findById(myId).select("-password")
+  const user = await User.findById(id).select("-password")
+  if (!user) {
+    res.send({ message: "no user found to follow"})
+  }
+
+  if (me.following.includes(user._id)) {
+    return res.status(400).json({ message: "You are already following this user" });
+  }
+
+  me.following.push(user._id);
+  await me.save(); 
+  
+  console.log(user)
+})
 module.exports = router

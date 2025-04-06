@@ -9,6 +9,9 @@ const Header = () => {
       <Link to="/public" className="brand-link">
         Public Profiles
       </Link>
+      <Link to="/profile" className="brand-link">
+        Your Profile
+      </Link>
 
       {/* Navigation section */}
       <nav>
