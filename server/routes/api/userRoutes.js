@@ -22,7 +22,7 @@ router.get('/me/', authMiddleware, async (req, res) => {
     }
 
     // Find the user by the ID that is decoded from the JWT token
-    const user = await User.findById(req.user._id).populate('trips');
+    const user = await User.findById(req.user._id).populate('trips').populate('following');
 
     if (!user) {
       return res.status(404).send({ error: 'User not found' });
@@ -59,8 +59,6 @@ router.post('/signup', async (req, res) => {
     if(!user) {
       return res.send("User not created")
     }
-
-    console.log(token)
 
     res.send({ user, token })
 
@@ -131,6 +129,7 @@ router.post('/:id/follow', authMiddleware, async (req, res) => {
  
   const me = await User.findById(myId).select("-password")
   const user = await User.findById(id).select("-password")
+
   if (!user) {
     res.send({ message: "no user found to follow"})
   }
@@ -140,13 +139,45 @@ router.post('/:id/follow', authMiddleware, async (req, res) => {
   }
 
   me.following.push(user._id);
-  await me.save(); 
+  await me.save();
   
-  console.log(user)
+  res.send(me)
+  console.log("followed")
+  console.log(me)
 })
 
 //Delete request to delete follower from user's array
 
-router.delete('/:id')
+router.delete('/:id/unfollow', authMiddleware, async (req, res) => {
+  console.log("unfollow")
+  const id = req.params.id
+  const myId = req.user._id
+
+  if(!myId) {
+    res.send({ message: "login to follow user" })
+  }
+
+  if (id === myId.toString()) {
+    return res.status(400).json({ message: "You cannot unfollow yourself" });
+  }
+ 
+  const me = await User.findById(myId).select("-password")
+  const user = await User.findById(id).select("-password")
+
+  console.log(user)
+  if (!user) {
+    res.send({ message: "no user found to unfollow"})
+  }
+
+  if (me.following.includes(user._id)) {
+    me.following.pull(user._id);
+    await me.save(); 
+  }
+  else {
+    return res.send({ message: "you are not following this user"})
+  }
+
+  res.send(me)
+})
 
 module.exports = router

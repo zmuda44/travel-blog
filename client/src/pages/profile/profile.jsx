@@ -18,7 +18,7 @@ const Profile = () => {
   const prevTrips = [];
   const dreamTrips = [];
 
-  const [user, setUser] = useState({ trips: [] });
+  const [user, setUser] = useState({ following: [], trips: [] });
 
   useEffect(() => {
     const getUserData = async ()=> {
@@ -106,6 +106,12 @@ const Profile = () => {
 
         {/* User icon box */}
         <div id="user-icon-box">{/* Add your user icon here */}</div>
+
+        <div className="following" style={{color: 'red', fontSize: '500px'}}>
+          {user.following.map((followedUser) => (
+            <div key={followedUser._id}>{followedUser.username}</div>
+          ))}
+        </div>
       </main>
     </div>
   );
