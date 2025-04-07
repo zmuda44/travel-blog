@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Auth from "../../utils/auth";
 import Header from "../../components/header";
+import "./public-profiles.css";
 
 function PublicUser() {
   const [user, setUser] = useState("");
