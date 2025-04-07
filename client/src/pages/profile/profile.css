@@ -257,6 +257,11 @@ header .brand-link {
   white-space: nowrap;
 }
 
+.following a {
+  color: white;
+  text-decoration: none;
+}
+
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .trip-boxes-container {
