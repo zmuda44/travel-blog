@@ -9,13 +9,6 @@ const DreamTrips = () => {
             {/* Render the Header component */}
             <Header />
             
-            {/* Container for friends section */}
-            <div className="friends-box">
-                <h2>Friends</h2>
-                {/* Display friends here */}
-                {/* This section can be used to list or display friends related to the dream trips */}
-            </div>
-            
             {/* Container for dream trips */}
             <div className="dream-trips-container">
                 {/* Each div below represents a box for a dream trip */}

@@ -102,15 +102,23 @@ const Profile = () => {
               <Trips trips={dreamTrips} />
             </div>
           </div>
-        </div>
 
-        {/* User icon box */}
-        <div id="user-icon-box">{/* Add your user icon here */}</div>
 
-        <div className="following" style={{color: 'red', fontSize: '500px'}}>
-          {user.following.map((followedUser) => (
-            <div key={followedUser._id}>{followedUser.username}</div>
-          ))}
+          {/* User icon box */}
+          <div id="user-icon-box">{/* Add your user icon here */}</div>
+
+          {/* User followers */}
+          <div className="following">
+            <p>You are following</p>
+            {user.following.map((followedUser) => (
+            <Link to={`/public/${followedUser._id}`}>
+            <div key={followedUser._id} className="follower-block">
+              <p>Usename: {followedUser.username}</p>          
+            </div>
+            </Link>
+            ))}
+          </div>
+
         </div>
       </main>
     </div>
